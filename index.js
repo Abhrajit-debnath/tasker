@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
 import { addTask } from "./lib/actions/add.js";
+import { listTasks } from "./lib/actions/list.js";
 import { commands } from "./lib/commands.js";
 import { greetUser } from "./lib/greeting.js";
 // console.log(process.argv);
 
 const [, , command, action, taskTitle, taskContent, taskStatus] = process.argv;
 // console.log(process);
-if (!action && command === "tasker") {
+if (!action) {
   greetUser();
   process.exit(0);
 }
@@ -18,9 +19,21 @@ if (!commands.includes(action)) {
 }
 
 if (action === "add") {
-  const response = addTask(taskTitle, taskContent);
-  console.log(`Task "${response.tasktitle}" Created`);
+  const task = addTask(taskTitle, taskContent);
+  console.log(`Task "${task.taskTitle}" Created`);
   process.exit(0);
 } else if (action === "list") {
-  console.log("list commands");
+  const tasks = listTasks();
+  console.log(tasks);
+  
+  const table = tasks.map((t) => ({
+    "Task Title": t.taskTitle,
+    "Task Content": t.taskContent,
+    "Status": t.status,
+  }));
+
+  console.table(table);
+  process.exit(0);
+} else if (action === "remove") {
+
 }
