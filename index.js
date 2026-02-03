@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
+import { addTask } from "./lib/actions/add.js";
 import { commands } from "./lib/commands.js";
 import { greetUser } from "./lib/greeting.js";
 // console.log(process.argv);
 
-const [, , command, action] = process.argv;
+const [, , command, action, taskTitle, taskContent, taskStatus] = process.argv;
 // console.log(process);
 if (!action && command === "tasker") {
   greetUser();
@@ -17,7 +18,8 @@ if (!commands.includes(action)) {
 }
 
 if (action === "add") {
-  console.log("add command");
+  const response = addTask(taskTitle, taskContent);
+  console.log(`Task "${response.tasktitle}" Created`);
   process.exit(0);
 } else if (action === "list") {
   console.log("list commands");
