@@ -1,6 +1,6 @@
 {
   "name": "taskbuddy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description":"Minimal Node.js CLI task manager",
   "license": "ISC",
   "repository": {

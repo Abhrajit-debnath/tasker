@@ -2,12 +2,12 @@
 
 import { addTask } from "./src/commands/add.js";
 import { listTasks } from "./src/commands/list.js";
-import { markTask } from "./src/commands/mark";
+import { markTask } from "./src/commands/mark.js";
 import { removeTask } from "./src/commands/remove.js";
 import { commands, helpManual } from "./src/commands/actions/commands.js";
 import { greetUser } from "./src/commands/actions/greeting.js";
 
-const [, ,,  action, taskTitle, taskContent, taskStatus] = process.argv;
+const [, ,  action, taskTitle, taskContent, taskStatus] = process.argv;
 
 if (!action) {
   greetUser();
