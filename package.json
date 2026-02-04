@@ -1,15 +1,30 @@
 {
   "name": "tasker",
   "version": "1.0.0",
-  "description": "",
+  "description":"Minimal Node.js CLI task manager",
   "license": "ISC",
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abhrajit-debnath/tasker.git"
+  },
+  "keywords": [
+    "cli",
+    "node",
+    "tasks",
+    "todo"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Abhrajit Debnath",
   "type": "module",
+  "main": "index.js",
   "bin": {
     "tasker": "./index.js"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "Welcome to tasker"
-  }
+  "bugs": {
+    "url": "https://github.com/Abhrajit-debnath/tasker/issues"
+  },
+  "homepage": "https://github.com/Abhrajit-debnath/tasker.git/tasker#readme",
+  "files": ["index.js","src"]
 }

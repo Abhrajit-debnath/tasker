@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import { addTask } from "./lib/actions/add.js";
-import { listTasks } from "./lib/actions/list.js";
-import { markTask } from "./lib/actions/mark.js";
-import { removeTask } from "./lib/actions/remove.js";
-import { commands, helpManual } from "./lib/commands.js";
-import { greetUser } from "./lib/greeting.js";
+import { addTask } from "./src/commands/add.js";
+import { listTasks } from "./src/commands/list.js";
+import { markTask } from "./src/commands/mark";
+import { removeTask } from "./src/commands/remove.js";
+import { commands, helpManual } from "./src/commands/actions/commands.js";
+import { greetUser } from "./src/commands/actions/greeting.js";
 
 const [, ,,  action, taskTitle, taskContent, taskStatus] = process.argv;
 
