@@ -1,5 +1,5 @@
 {
-  "name": "tasker",
+  "name": "taskbuddy",
   "version": "1.0.0",
   "description":"Minimal Node.js CLI task manager",
   "license": "ISC",
@@ -20,7 +20,7 @@
   "type": "module",
   "main": "index.js",
   "bin": {
-    "tasker": "./index.js"
+    "taskbuddy": "./index.js"
   },
   "bugs": {
     "url": "https://github.com/Abhrajit-debnath/tasker/issues"
