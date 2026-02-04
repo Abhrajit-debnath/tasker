@@ -4,12 +4,11 @@ import { addTask } from "./lib/actions/add.js";
 import { listTasks } from "./lib/actions/list.js";
 import { markTask } from "./lib/actions/mark.js";
 import { removeTask } from "./lib/actions/remove.js";
-import { commands } from "./lib/commands.js";
+import { commands, helpManual } from "./lib/commands.js";
 import { greetUser } from "./lib/greeting.js";
-// console.log(process.argv);
 
-const [, , , action, taskTitle, taskContent, taskStatus] = process.argv;
-// console.log(process);
+const [, ,,  action, taskTitle, taskContent, taskStatus] = process.argv;
+
 if (!action) {
   greetUser();
   process.exit(0);
@@ -45,13 +44,22 @@ if (action === "add") {
 
   if (removeTask) {
     console.log(`Task "${removedTask.taskTitle}" removed successfuly`);
+  
   }
-  process.exit(0);
 } else if (action === "mark") {
   const [updatedTask] = markTask(taskTitle, taskContent);
 
   console.log(
     `Task "${updatedTask.taskTitle}'s" status updated to ${updatedTask.status} successfuly`,
   );
+  process.exit(0);
+} else if (action === "help") {
+  if (helpManual) {
+    for (const element of helpManual) {
+      console.log(element);
+    }
+  } else {
+    throw new Error("Unable to load commands");
+  }
   process.exit(0);
 }
