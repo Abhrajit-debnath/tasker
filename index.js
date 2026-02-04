@@ -2,12 +2,13 @@
 
 import { addTask } from "./lib/actions/add.js";
 import { listTasks } from "./lib/actions/list.js";
+import { markTask } from "./lib/actions/mark.js";
 import { removeTask } from "./lib/actions/remove.js";
 import { commands } from "./lib/commands.js";
 import { greetUser } from "./lib/greeting.js";
 // console.log(process.argv);
 
-const [, , command, action, taskTitle, taskContent, taskStatus] = process.argv;
+const [, , , action, taskTitle, taskContent, taskStatus] = process.argv;
 // console.log(process);
 if (!action) {
   greetUser();
@@ -25,20 +26,32 @@ if (action === "add") {
   process.exit(0);
 } else if (action === "list") {
   const tasks = listTasks();
-  console.log(tasks);
+  if (tasks.length === 0) {
+    console.log("Dont have tasks yet");
+  } else {
+    const table = tasks.map((t) => ({
+      "Task Title": t.taskTitle,
+      "Task Content": t.taskContent,
+      Status: t.status,
+    }));
+    if (table) {
+      console.table(table);
+    }
+  }
 
-  const table = tasks.map((t) => ({
-    "Task Title": t.taskTitle,
-    "Task Content": t.taskContent,
-    Status: t.status,
-  }));
-
-  console.table(table);
   process.exit(0);
 } else if (action === "remove") {
   const removedTask = removeTask(taskTitle);
+
   if (removeTask) {
-    console.log(`Task ${removedTask.taskTitle} removed successfuly`);
+    console.log(`Task "${removedTask.taskTitle}" removed successfuly`);
   }
+  process.exit(0);
+} else if (action === "mark") {
+  const [updatedTask] = markTask(taskTitle, taskContent);
+
+  console.log(
+    `Task "${updatedTask.taskTitle}'s" status updated to ${updatedTask.status} successfuly`,
+  );
   process.exit(0);
 }
